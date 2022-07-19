@@ -1,9 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
+	"io"
 	"net/http"
+	"strings"
 )
 
 func main() {
@@ -11,8 +12,8 @@ func main() {
 	fmt.Println(r.Status)
 	fmt.Println(r.Header["Content-Type"])
 
-	buf := new(bytes.Buffer)
-	_, err := buf.ReadFrom(r.Body)
+	buf := new(strings.Builder)
+	_, err := io.Copy(buf, r.Body)
 	if err != nil {
 		panic(err)
 	}
