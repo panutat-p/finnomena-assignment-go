@@ -3,9 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/manifoldco/promptui"
-	"io"
-	"net/http"
-	"strings"
+	"github.com/panutat-p/finn-thai-funds-go/core"
 )
 
 func main() {
@@ -26,16 +24,7 @@ func main() {
 			break
 		} else {
 			fmt.Printf("You choose %q\n", result)
-			r, _ := http.Get("https://storage.googleapis.com/finno-ex-re-v2-static-staging/recruitment-test/fund-ranking-1Y.json")
-			fmt.Println(r.Status)
-			fmt.Println(r.Header["Content-Type"])
-
-			buf := new(strings.Builder)
-			_, err := io.Copy(buf, r.Body)
-			if err != nil {
-				panic(err)
-			}
-			fmt.Println(buf.String())
+			core.GetFundRanking1Y()
 		}
 	}
 }
