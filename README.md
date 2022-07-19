@@ -1,0 +1,2 @@
+# finn-thai-funds-go
+
