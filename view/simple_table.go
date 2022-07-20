@@ -26,9 +26,9 @@ func PrintCompactTable(data *[]fund.Fund) {
 		r := []*simpletable.Cell{
 			{Align: simpletable.AlignRight, Text: fmt.Sprintf("%d", i)},
 			{Text: row.MstarID},
-			{Text: row.ThailandFundCode},
+			{Text: blue(row.ThailandFundCode)},
 			{Align: simpletable.AlignRight, Text: fmt.Sprintf("$ %.2f", row.NavReturn)},
-			{Align: simpletable.AlignRight, Text: fmt.Sprintf("$ %.2f", row.Nav)},
+			{Align: simpletable.AlignRight, Text: green(fmt.Sprintf("$ %.2f", row.Nav))},
 			{Text: row.NavDate.Format("2006-02-01")},
 			{Align: simpletable.AlignRight, Text: fmt.Sprintf("$ %.2f", row.AvgReturn)},
 		}
