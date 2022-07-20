@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/manifoldco/promptui"
 	"github.com/panutat-p/finn-thai-funds-go/core"
+	"github.com/panutat-p/finn-thai-funds-go/view"
 )
 
 func main() {
@@ -20,11 +21,21 @@ func main() {
 			break
 		}
 
-		if result == "🟥" {
-			break
-		} else {
-			fmt.Printf("You choose %q\n", result)
-			core.GetFundRanking1Y()
+		switch result {
+		case "1Y":
+			funds := core.GetFundByRanking("fund-ranking-1Y.json")
+			view.PrintCompactTable(&funds)
+		case "1M":
+			funds := core.GetFundByRanking("fund-ranking-1M.json")
+			view.PrintCompactTable(&funds)
+		case "1W":
+			funds := core.GetFundByRanking("fund-ranking-1W.json")
+			view.PrintCompactTable(&funds)
+		case "1D":
+			funds := core.GetFundByRanking("fund-ranking-1D.json")
+			view.PrintCompactTable(&funds)
+		case "🟥":
+			return
 		}
 	}
 }

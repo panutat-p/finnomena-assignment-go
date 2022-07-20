@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"github.com/panutat-p/finn-thai-funds-go/config"
 	"github.com/panutat-p/finn-thai-funds-go/fund"
-	"github.com/panutat-p/finn-thai-funds-go/view"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"sort"
 )
 
 type Response struct {
@@ -17,8 +17,8 @@ type Response struct {
 	Data   []fund.Fund
 }
 
-func GetFundRanking1Y() {
-	r, _ := http.Get(config.BASE_URL)
+func GetFundByRanking(tf string) []fund.Fund {
+	r, _ := http.Get(fmt.Sprintf("%s/%s", config.BASE_URL, tf))
 	fmt.Println(r.Status)
 	fmt.Println(r.Header["Content-Type"])
 
@@ -34,9 +34,12 @@ func GetFundRanking1Y() {
 		log.Println(err)
 		panic(err)
 	}
-	fmt.Println("status:", response.Status)
-	fmt.Println("error:", response.Error)
-	fmt.Println("len", len(response.Data))
 
-	view.PrintCompactTable(&response.Data)
+	return response.Data
+}
+
+func SortFundsByNavDate(funds []fund.Fund) {
+	sort.Slice(funds, func(i, j int) bool {
+		return funds[i].NavDate.Before(funds[j].NavDate)
+	})
 }
