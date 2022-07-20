@@ -4,23 +4,17 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/panutat-p/finn-thai-funds-go/config"
+	"github.com/panutat-p/finn-thai-funds-go/fund"
+	"github.com/panutat-p/finn-thai-funds-go/view"
 	"io/ioutil"
 	"log"
 	"net/http"
-	"time"
 )
 
 type Response struct {
 	Status bool   `json:"status"`
 	Error  string `json:"error"`
-	Data   []struct {
-		MstarID          string    `json:"mstar_id"`
-		ThailandFundCode string    `json:"thailand_fund_code"`
-		NavReturn        float64   `json:"nav_return"`
-		Nav              float64   `json:"nav"`
-		NavDate          time.Time `json:"nav_date"`
-		AvgReturn        float64   `json:"avg_return"`
-	} `json:"data"`
+	Data   []fund.Fund
 }
 
 func GetFundRanking1Y() {
@@ -43,4 +37,6 @@ func GetFundRanking1Y() {
 	fmt.Println("status:", response.Status)
 	fmt.Println("error:", response.Error)
 	fmt.Println("len", len(response.Data))
+
+	view.PrintCompactTable(&response.Data)
 }
