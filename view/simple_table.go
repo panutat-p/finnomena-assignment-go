@@ -12,12 +12,12 @@ func PrintCompactTable(data *[]fund.Fund) {
 	table.Header = &simpletable.Header{
 		Cells: []*simpletable.Cell{
 			{Align: simpletable.AlignCenter, Text: "#"},
-			{Align: simpletable.AlignCenter, Text: "mstar_id"},
-			{Align: simpletable.AlignCenter, Text: "thailand_fund_code"},
-			{Align: simpletable.AlignCenter, Text: "nav_return"},
-			{Align: simpletable.AlignCenter, Text: "nav"},
-			{Align: simpletable.AlignCenter, Text: "nav_date (UTC)"},
-			{Align: simpletable.AlignCenter, Text: "avg_return"},
+			{Align: simpletable.AlignCenter, Text: "Fund ID"},
+			{Align: simpletable.AlignCenter, Text: "Code"},
+			{Align: simpletable.AlignCenter, Text: "NAV Rank"},
+			{Align: simpletable.AlignCenter, Text: "Price"},
+			{Align: simpletable.AlignCenter, Text: "Date (UTC)"},
+			{Align: simpletable.AlignCenter, Text: "Average Return"},
 		},
 	}
 
@@ -27,10 +27,10 @@ func PrintCompactTable(data *[]fund.Fund) {
 			{Align: simpletable.AlignRight, Text: fmt.Sprintf("%d", i)},
 			{Text: row.MstarID},
 			{Text: blue(row.ThailandFundCode)},
-			{Align: simpletable.AlignRight, Text: fmt.Sprintf("$ %.2f", row.NavReturn)},
-			{Align: simpletable.AlignRight, Text: green(fmt.Sprintf("$ %.2f", row.Nav))},
+			{Align: simpletable.AlignRight, Text: fmt.Sprintf("%.2f", row.NavReturn)},
+			{Align: simpletable.AlignRight, Text: green(fmt.Sprintf("%.2f ฿", row.Nav))},
 			{Text: row.NavDate.Format("2006-02-01")},
-			{Align: simpletable.AlignRight, Text: fmt.Sprintf("$ %.2f", row.AvgReturn)},
+			{Align: simpletable.AlignRight, Text: fmt.Sprintf("%.2f", row.AvgReturn)},
 		}
 
 		table.Body.Cells = append(table.Body.Cells, r)
