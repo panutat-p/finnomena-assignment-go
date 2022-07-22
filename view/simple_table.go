@@ -11,10 +11,10 @@ func PrintCompactTable(data *[]fund.Fund) {
 
 	table.Header = &simpletable.Header{
 		Cells: []*simpletable.Cell{
-			{Align: simpletable.AlignCenter, Text: "#"},
+			{Align: simpletable.AlignCenter, Text: "Rank of fund"},
 			{Align: simpletable.AlignCenter, Text: "Fund ID"},
-			{Align: simpletable.AlignCenter, Text: "Code"},
-			{Align: simpletable.AlignCenter, Text: "NAV Rank"},
+			{Align: simpletable.AlignCenter, Text: "Name"},
+			{Align: simpletable.AlignCenter, Text: "Performance"},
 			{Align: simpletable.AlignCenter, Text: "Price"},
 			{Align: simpletable.AlignCenter, Text: "Date (UTC)"},
 			{Align: simpletable.AlignCenter, Text: "Average Return"},
